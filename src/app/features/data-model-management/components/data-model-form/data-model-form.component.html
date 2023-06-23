@@ -1,0 +1,118 @@
+<form class="bg-white p-5" [formGroup]="dataModelForm" (ngSubmit)="onSubmit()">
+  <h3 class="fw-bold fs-3 mb-5">
+    {{ modelId ? "Update" : "Create" }} Data Model
+  </h3>
+  <div class="row">
+    <div class="col-lg-8">
+      <de-input
+        [controller]="getControl('name')"
+        [label]="'Data Model Name'"
+        [maxLength]="50"
+        className="w-100"
+        [required]="true"
+        [placeholder]="'Data Model Name'"
+      >
+      </de-input>
+    </div>
+    <div class="col-lg-8 mt-3">
+      <de-select
+        [controller]="getControl('modelGroupId')"
+        optionValue="id"
+        optionLabel="name"
+        label="Domain"
+        placeholder="Domain"
+        className="w-100"
+        [data]="domainList"
+        className="custom-form-field w-100"
+      ></de-select>
+    </div>
+    <div class="col-lg-8 mt-3">
+      <div class="file-upload-container">
+        <de-file-uploader
+          [label]="'Upload JSON File'"
+          [required]="true"
+          (filesList)="onSelectFile($event)"
+          [multiple]="false"
+          [options]="dataModelFileUploadOptions"
+        ></de-file-uploader>
+        <div class="d-flex align-items-center">
+          <mat-icon class="me-2 text-primary">info</mat-icon>
+          <p class="mb-0">To select fields you should upload a JSON file.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 mt-3">
+      <de-select
+        [controller]="getControl('fields')"
+        optionLabel="name"
+        [label]="'Fields '"
+        [placeholder]="'Fields'"
+        className="w-100"
+        [data]="fieldsList"
+        [multiple]="true"
+        [className]="'custom-form-field w-100'"
+      ></de-select>
+    </div>
+    <div class="col-lg-8 mt-3">
+      <de-select
+        [controller]="getControl('key')"
+        optionLabel="name"
+        optionValue="name"
+        [label]="'Key '"
+        [placeholder]="'Key'"
+        className="w-100"
+        [data]="dataModelForm.get('fields')?.value"
+        [className]="'custom-form-field w-100'"
+      ></de-select>
+    </div>
+    <div class="col-lg-8 mt-3">
+      <de-select
+        [controller]="getControl('transformer')"
+        [label]="'Transformers '"
+        [placeholder]="'Transformers'"
+        [data]="transformersList"
+        [className]="'custom-form-field w-100'"
+      ></de-select>
+    </div>
+    <div class="col-lg-8 mt-3">
+      <de-input
+        [controller]="getControl('collection')"
+        [label]="'Collection '"
+        [maxLength]="50"
+        className="w-100"
+        [required]="true"
+        [placeholder]="'Collection'"
+      >
+      </de-input>
+    </div>
+    <div class="col-lg-8 mt-3">
+      <de-input
+        [controller]="getControl('path')"
+        [label]="'Path '"
+        [placeholder]="'Path'"
+        [required]="true"
+      >
+      </de-input>
+    </div>
+    <div class="col-lg-5 mt-4">
+      <button
+        class="w-100"
+        mat-raised-button
+        color="primary"
+        [disabled]="dataModelForm.invalid"
+      >
+        {{ modelId ? "Update" : "Create" }}
+      </button>
+    </div>
+    <div class="col-lg-3 mt-4">
+      <button
+        class="w-100"
+        mat-raised-button
+        color="basic"
+        routerLink="/data-elements/data-model-management"
+      >
+        cancel
+      </button>
+    </div>
+  </div>
+</form>

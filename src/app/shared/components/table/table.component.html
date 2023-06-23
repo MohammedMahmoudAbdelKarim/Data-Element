@@ -1,0 +1,103 @@
+<ng-container *ngIf="dataSource.data?.length">
+  <mat-table
+    [dataSource]="dataSource?.data"
+    class="mat-elevation-z8 overflow-auto w-100"
+  >
+    <ng-container *ngFor="let col of dataSource.columns">
+      <ng-container
+        *ngIf="col?.colKey != 'actions'"
+        matColumnDef="{{ col.colKey }}"
+      >
+        <mat-header-cell mat-header-cell *matHeaderCellDef>
+          {{ col.title }}
+        </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element">
+          <ng-container *ngIf="col?.colKey === 'required'">
+            <mat-icon
+              [ngClass]="{
+                'text-success': element.required,
+                'text-danger': !element.required
+              }"
+              >{{ element.required ? "check" : "close" }}</mat-icon
+            >
+          </ng-container>
+          <span
+            *ngIf="col?.colKey != 'required'"
+            [ngClass]="
+              col?.classes
+                ? col?.classes + ' ' + (element | mapValue : col?.colKey)
+                : ''
+            "
+            [matTooltip]="element | mapValue : col?.colKey"
+            matTooltipPosition="below"
+            [innerHTML]="element | mapValue : col?.colKey"
+          >
+          </span>
+        </mat-cell>
+      </ng-container>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="d-flex align-items-center">
+          <button
+            #menuTrigger="matMenuTrigger"
+            [matMenuTriggerFor]="menu"
+            (click)="$event.stopPropagation()"
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <ng-container
+              *ngFor="let action of dataSource?.allowedActions; let y = index"
+            >
+              <div
+                matRipple
+                class="d-flex align-items-center px-3 py-2 pointer"
+                (click)="
+                  onHandleAction(element, action.action, $event);
+                  menuTrigger.closeMenu()
+                "
+              >
+                <button
+                  mat-fab
+                  aria-label="Action"
+                  [matTooltip]="action.label"
+                  matTooltipPosition="below"
+                  [class]="action?.class"
+                  aria-label="expand row"
+                  [color]="action.label !== 'Delete' ? 'primary' : 'warn'"
+                >
+                  <mat-icon> {{ action?.icon }}</mat-icon>
+                </button>
+                <span class="ms-3">{{ action.label }}</span>
+              </div>
+              <hr
+                class="my-1"
+                *ngIf="dataSource?.allowedActions?.length !== y + 1"
+              />
+            </ng-container>
+          </mat-menu>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row
+      *matHeaderRowDef="dataSource.columnsHeaders"
+    ></mat-header-row>
+    <mat-row
+      matRipple
+      *matRowDef="let row; columns: dataSource.columnsHeaders"
+    ></mat-row>
+  </mat-table>
+  <ng-container *ngIf="dataSource?.data?.length">
+    <de-pagination
+      [pageIndex]="dataSource?.pagination?.offset"
+      [length]="dataSource?.pagination?.totalElements"
+      (paginationEmitter)="paginationEmitter.emit($event)"
+    ></de-pagination>
+  </ng-container>
+</ng-container>
+<de-empty-state *ngIf="!dataSource.data.length"></de-empty-state>

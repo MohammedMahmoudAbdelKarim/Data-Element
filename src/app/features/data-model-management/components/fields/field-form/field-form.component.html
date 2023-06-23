@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-between align-items-center p-3 bg-primary">
+  <h2 mat-dialog-title class="mb-0 text-white">
+    {{ data ? "Update" : "Create New" }} Field
+  </h2>
+  <button mat-button mat-dialog-close class="text-white closeModal">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<form [formGroup]="modelFieldsForm" (ngSubmit)="onSubmit()" class="mt-3">
+  <mat-dialog-content>
+    <div class="row w-100 mx-0">
+      <div class="col-lg-6 mb-3">
+        <de-input
+          [controller]="getControl('name')"
+          [label]="'Field Name '"
+          [placeholder]="'Field Name'"
+          [required]="true"
+        >
+        </de-input>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <de-select
+          [controller]="getControl('type')"
+          [label]="'Field Type '"
+          [placeholder]="'Field Type'"
+          [data]="fieldTypes"
+        >
+        </de-select>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <de-input
+          [controller]="getControl('numberRange')"
+          [label]="'Number Range '"
+          [placeholder]="'Number Range'"
+        >
+        </de-input>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <de-input
+          [controller]="getControl('stringLength')"
+          [label]="'String Length '"
+          [placeholder]="'String Length'"
+        >
+        </de-input>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <de-select
+          [controller]="getControl('builtInFormat')"
+          [label]="'Built-In Format '"
+          [data]="builtInFormat"
+          [placeholder]="'Built-In Format'"
+        >
+        </de-select>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <de-input
+          [controller]="getControl('numberMax')"
+          [label]="'Max Number '"
+          [placeholder]="'Max Number'"
+        >
+        </de-input>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <de-input
+          [controller]="getControl('numberMin')"
+          [label]="'Min Number '"
+          [placeholder]="'Min Number'"
+        >
+        </de-input>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <h4 class="mb-3 fw-bolder">Required</h4>
+        <mat-slide-toggle
+          color="primary"
+          formControlName="required"
+        ></mat-slide-toggle>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="mb-1 w-100 px-3">
+    <button
+      mat-raised-button
+      color="primary"
+      class="w-100"
+      [disabled]="modelFieldsForm.invalid"
+    >
+      <span> {{ data ? "Update" : "Create" }}</span>
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,44 @@
+<section id="domain-details" class="bg-white p-3" *ngIf="domainDetails">
+  <ul class="p-3 list-unstyled row w-100 mx-0">
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Domain Name</h4>
+      <span class="ms-2 text-muted load">{{ domainDetails?.name }}</span>
+    </li>
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Domain ID</h4>
+      <div
+        class="d-flex align-items-center pointer"
+        [cdkCopyToClipboard]="domainDetails?.id"
+        (click)="toastr.success('Copied to clipboard')"
+      >
+        <mat-icon>file_copy</mat-icon>
+        <span class="ms-2 text-muted load">{{ domainDetails?.id }}</span>
+      </div>
+    </li>
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Path</h4>
+      <div
+        class="d-flex align-items-center pointer"
+        [cdkCopyToClipboard]="domainDetails?.path"
+        (click)="toastr.success('Copied to clipboard')"
+      >
+        <mat-icon>file_copy</mat-icon>
+        <span class="ms-2 text-muted load">{{ domainDetails?.path }}</span>
+      </div>
+    </li>
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Domain Admins</h4>
+      <div
+        class="d-flex align-items-center pointer mb-2"
+        *ngFor="let email of domainDetails?.admins"
+      >
+        <img
+          src="https://placehold.co/59x59?text=Profile&font=play"
+          alt="Profile"
+          class="rounded-circle"
+        />
+        <span class="ms-2 text-muted load">{{ email }}</span>
+      </div>
+    </li>
+  </ul>
+</section>

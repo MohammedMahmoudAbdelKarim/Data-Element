@@ -1,0 +1,6 @@
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+  background-color: $primary !important;
+  .mat-mdc-chip-action-label {
+    color: #fff !important;
+  }
+}

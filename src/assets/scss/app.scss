@@ -1,0 +1,44 @@
+@import "./theme/fonts.scss";
+@import "./theme/data-elements-bootstrap.scss";
+
+@import "./layout.scss";
+@import "./loader.scss";
+
+@import "./components/notification.scss";
+@import "./components/dashboard.scss";
+@import "./components/table.scss";
+@import "./components/not-found.scss";
+@import "./components/empty-state.scss";
+@import "./components/tabs.scss";
+@import "./components/file-upload.scss";
+@import "./components/login.scss";
+@import "./components/models.scss";
+@import "./components/clients.scss";
+@import "./components/material.scss";
+
+// Global Style
+body {
+  background: #f7f8ff;
+  font-family: "Play" !important;
+}
+
+footer {
+  z-index: 999;
+}
+
+::-webkit-scrollbar {
+  width: 0.2em;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#toast-container>div {
+  opacity: 1;
+}

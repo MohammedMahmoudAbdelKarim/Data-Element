@@ -1,0 +1,135 @@
+<mat-toolbar color="primary">
+  <div class="w-100 d-flex h-100 align-items-center justify-content-between">
+    <div
+      class="logo-container h-100 text-center d-flex align-items-center justify-content-center"
+    >
+      <img
+        class="logo d-flex pointer"
+        src="./assets/imgs/logo-white.svg"
+        alt="Logo"
+        routerLink="./"
+      />
+    </div>
+    <div
+      class="w-100 h-100 d-flex align-items-center justify-content-between px-3"
+    >
+      <button
+        mat-icon-button
+        *ngIf="sidenav.mode !== 'over'"
+        (click)="sidenav.toggle()"
+        labelledby="menu"
+        matTooltip="Collapse"
+        aria-label="Menu"
+      >
+        <mat-icon> menu </mat-icon>
+      </button>
+      <button
+        aria-label="Menu"
+        mat-icon-button
+        *ngIf="sidenav.mode === 'over'"
+        (click)="sidenav.toggle()"
+        labelledby="menu"
+        matTooltip="Collapse"
+        aria-label="Menu"
+      >
+        <mat-icon> menu </mat-icon>
+      </button>
+      <div class="dropdown" id="dropdown">
+        <button
+          class="dropdown-toggle border-0"
+          type="button"
+          id="dropdownMenuButtonService"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          labelledby="dropdown"
+          matTooltip="Services"
+          aria-label="Services"
+        >
+          <div class="d-flex align-items-center text-white">
+            <mat-icon>apps</mat-icon>
+            <h4 class="mb-0 ms-2">Services</h4>
+          </div>
+        </button>
+        <ul
+          class="dropdown-menu services-menu"
+          aria-labelledby="dropdownMenuButtonService"
+        >
+          <de-services-links></de-services-links>
+        </ul>
+      </div>
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="dropdown" id="dropdown">
+          <button
+            class="dropdown-toggle border-0"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            labelledby="dropdown"
+            aria-label="Notifications Button"
+            matTooltip="Notifications"
+          >
+            <mat-icon class="text-white me-5 w-100">notifications</mat-icon>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <de-notification></de-notification>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropdown">
+          <button
+            class="dropdown-toggle border-0 d-flex align-items-center"
+            type="button"
+            id="dropdownMenuButton2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            labelledby="dropdown"
+            matTooltip="Profile"
+          >
+            <img
+              class="profile-img d-flex rounded-circle"
+              src="https://placehold.co/59x59?text=User+Profile+Image&font=montserrat"
+              alt="Profile-image"
+            />
+            <span class="fs-6 fw-bolder text-white ms-3">Marwan Darwish</span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+            <li class="d-flex align-items-center logout" (click)="logout()">
+              <mat-icon class="me-2">settings_power</mat-icon>
+              <span>Logout</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+    <ul class="list-unstyled p-0">
+      <li
+        *ngFor="let menu of menuLinks"
+        class="d-flex align-items-center w-100 mb-2 p-3 menu-link"
+        [routerLink]="menu.link"
+        routerLinkActive="active"
+      >
+        <mat-icon>{{ menu.icon }}</mat-icon>
+        <span class="ms-2">{{ menu.title }}</span>
+      </li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content px-lg-3">
+      <div class="d-flex align-items-center mb-3">
+        <mat-icon>home</mat-icon>
+        <app-ng-dynamic-breadcrumb
+          [bgColor]="'transparent'"
+          [fontSize]="'18px'"
+          [fontColor]="'#303f9f'"
+          [lastLinkColor]="'#000'"
+        ></app-ng-dynamic-breadcrumb>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+    <de-footer></de-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,45 @@
+<section id="client-details" class="bg-white p-3" *ngIf="clientDetails">
+  <ul class="p-3 list-unstyled row w-100 mx-0">
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Client Name</h4>
+      <span class="ms-2 text-muted load">{{ clientDetails?.name }}</span>
+    </li>
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Application Owner</h4>
+      <div
+        class="d-flex align-items-center pointer mb-2"
+        *ngFor="let email of clientDetails?.owners"
+      >
+        <img
+          src="https://placehold.co/59x59?text=Profile&font=play"
+          alt="Profile"
+          class="rounded-circle"
+        />
+        <span class="ms-2 text-muted load">{{ email }}</span>
+      </div>
+    </li>
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Status</h4>
+      <span class="ms-2 status {{ clientDetails?.status }}">{{
+        clientDetails?.status
+      }}</span>
+    </li>
+  </ul>
+  <hr />
+  <ul class="w-100 mt-3 p-3 list-unstyled">
+    <h5 class="px-3 fw-bolder">IP Whitelist:</h5>
+    <li
+      class="mt-3 px-3 d-flex align-items-center justify-content-between w-100 pb-3"
+      *ngFor="let api of clientDetails?.ipWhitelist; let i = index"
+    >
+      <div
+        class="d-flex align-items-center justify-content-center pointer"
+        [cdkCopyToClipboard]="api"
+        (click)="toastr.success('Copied to clipboard')"
+      >
+        <mat-icon class="me-2">file_copy</mat-icon>
+        <span class="fw-bold fs-5">{{ api | mask : "IP" }}</span>
+      </div>
+    </li>
+  </ul>
+</section>

@@ -1,0 +1,117 @@
+<form
+  id="client-form"
+  class="bg-white p-5"
+  [formGroup]="permissionForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h3 class="fw-bold fs-3 mb-5">
+    {{ permissionId ? "Update" : "Create" }} Access Permission
+  </h3>
+  <div class="row w-100 mx-0 align-items-center">
+    <div class="col-md-8">
+      <de-select
+        [controller]="getControl('clientId')"
+        optionValue="id"
+        optionLabel="name"
+        label="Client "
+        placeholder="Client"
+        className="w-100"
+        [data]="clientList"
+        className="custom-form-field w-100"
+      ></de-select>
+    </div>
+    <div class="col-md-8 mt-3">
+      <de-select
+        [controller]="getControl('domain')"
+        optionValue="id"
+        optionLabel="name"
+        label="Domain"
+        placeholder="Domain"
+        className="w-100"
+        [data]="domainsList"
+        className="custom-form-field w-100"
+      ></de-select>
+    </div>
+    <div class="col-md-8 mt-3">
+      <de-select
+        [controller]="getControl('modelId')"
+        optionLabel="name"
+        optionValue="id"
+        label="Data Model"
+        placeholder="Data Model"
+        className="w-100"
+        [data]="modelsList"
+        className="custom-form-field w-100"
+        (selectEmitter)="getFieldsByModelId($event.value)"
+      ></de-select>
+    </div>
+    <div class="col-md-8 mt-3">
+      <de-select
+        [controller]="getControl('fieldsId')"
+        optionLabel="name"
+        optionValue="id"
+        label="Fields"
+        placeholder="Fields"
+        className="w-100"
+        [data]="fieldsList"
+        [multiple]="true"
+        className="custom-form-field w-100"
+      ></de-select>
+    </div>
+    <div class="col-md-8 mt-3">
+      <de-select
+        [controller]="getControl('accessLevel')"
+        optionValue="value"
+        optionLabel="label"
+        label="Access Level"
+        placeholder="Access Level"
+        className="w-100"
+        [data]="accessLevelList"
+        className="custom-form-field w-100"
+      ></de-select>
+    </div>
+    <div class="col-md-8 mt-3">
+      <de-input
+        [controller]="getControl('ratePerHour')"
+        [label]="'Rate Per Hour'"
+        [placeholder]="'Rate Per Hour'"
+        className="w-100"
+        [type]="'number'"
+        [min]="0"
+      >
+      </de-input>
+    </div>
+    <div class="col-md-8 mt-3">
+      <de-input
+        [controller]="getControl('ratePerDay')"
+        [label]="'Rate Per Day'"
+        [placeholder]="'Rate Per Day'"
+        className="w-100"
+        [type]="'number'"
+        [min]="0"
+      ></de-input>
+    </div>
+    <div class="col-md-5 mt-4">
+      <button
+        class="w-100"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="permissionForm?.invalid"
+      >
+        {{ permissionId ? "Update" : "Create" }}
+      </button>
+    </div>
+    <div class="col-md-3 mt-4">
+      <button
+        class="w-100"
+        mat-raised-button
+        color="basic"
+        type="button"
+        routerLink="/data-elements/permissions"
+      >
+        cancel
+      </button>
+    </div>
+  </div>
+</form>

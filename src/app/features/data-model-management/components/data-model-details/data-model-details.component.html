@@ -1,0 +1,70 @@
+<section id="data-models-details" class="bg-white p-3">
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon me-2">info</mat-icon>
+        <span>Details</span>
+      </ng-template>
+      <ul class="p-3 list-unstyled row w-100 mx-0" *ngIf="modelDetails">
+        <li class="user-select-none col-md-6 mt-4">
+          <h4 class="mb-3 fw-bolder">Domain Name</h4>
+          <span class="ms-2 text-muted load">Domain_Test</span>
+        </li>
+        <li class="user-select-none col-md-6 mt-4">
+          <h4 class="mb-3 fw-bolder">Model Name</h4>
+          <span class="ms-2 text-muted load">{{ modelDetails.name }}</span>
+        </li>
+        <li class="user-select-none col-md-6 mt-4">
+          <h4 class="mb-3 fw-bolder">Key</h4>
+          <span class="ms-2 text-muted load">{{ modelDetails.key }}</span>
+        </li>
+        <li class="user-select-none col-md-6 mt-4">
+          <h4 class="mb-3 fw-bolder">Transformer</h4>
+          <span class="ms-2 text-muted load">{{
+            modelDetails.transformer
+          }}</span>
+        </li>
+        <li class="user-select-none col-md-6 mt-4">
+          <h4 class="mb-3 fw-bolder">Path</h4>
+          <span class="ms-2 text-white load fst-italic bg-primary px-3">{{
+            modelDetails.path
+          }}</span>
+        </li>
+        <li class="user-select-none col-md-6 mt-4">
+          <h4 class="mb-3 fw-bolder">Collection</h4>
+          <span class="ms-2 text-muted load">{{
+            modelDetails.collection
+          }}</span>
+        </li>
+        <li class="user-select-none col-md-6 mt-4">
+          <h4 class="mb-3 fw-bolder">Created by</h4>
+          <div class="d-flex align-items-center pointer">
+            <img
+              src="https://placehold.co/59x59?text=Profile&font=play"
+              alt="Profile"
+              class="rounded-circle"
+            />
+            <span class="ms-2 text-muted load">Marwan Darwish</span>
+          </div>
+        </li>
+      </ul>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon me-2">list</mat-icon>
+        <span>Fields</span>
+      </ng-template>
+      <div class="my-4 d-flex justify-content-end">
+        <button mat-raised-button color="primary" (click)="onCreateNewField()">
+          <mat-icon>add</mat-icon>
+          Add New Field
+        </button>
+      </div>
+      <de-fields-list
+        (editEmitter)="getDataModelDetails()"
+        [data]="modelDetails?.fields"
+        [modelId]="'modelId'"
+      ></de-fields-list>
+    </mat-tab>
+  </mat-tab-group>
+</section>

@@ -1,0 +1,17 @@
+<div class="row w-100 mx-0" id="services-links">
+  <div class="col-lg-12 mt-2" *ngFor="let menu of menuLinks; let i = index">
+    <div
+      class="card border-0 p-3"
+      [routerLink]="menu.link"
+      routerLinkActive="active"
+    >
+      <div class="d-flex align-items-center">
+        <div class="icon-container p-2">
+          <mat-icon>{{ menu.icon }}</mat-icon>
+        </div>
+        <span class="ms-2">{{ menu.title }}</span>
+      </div>
+    </div>
+    <hr *ngIf="menuLinks.length !== i + 1" />
+  </div>
+</div>

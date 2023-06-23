@@ -1,0 +1,84 @@
+.file-upload-container {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 0 5px;
+  label {
+    font-family: "Play";
+  }
+  .dropZone {
+    background: #dde1ff;
+    padding: 2rem;
+    input {
+      opacity: 0;
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+.uploaded-file-item {
+  background-color: #fff;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  img {
+    width: 70px;
+  }
+}
+.uploaded-icon {
+  &.progress-upload {
+    position: relative;
+    overflow: hidden;
+    &::before {
+      content: "";
+      color: #fff;
+      position: absolute;
+      background-color: $primary;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      animation: slideHeight 3s ease-in forwards;
+    }
+    img {
+      opacity: 0;
+      animation: fadeIn 0.1s ease-in 3s forwards;
+    }
+  }
+}
+
+@keyframes slideHeight {
+  0% {
+    transform: translateY(100%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,51 @@
+<mat-form-field appearance="outline" class="w-100">
+  <mat-label>{{ label }}</mat-label>
+  <mat-select
+    [formControl]="controller"
+    [multiple]="multiple"
+    [placeholder]="placeholder"
+    (selectionChange)="onSelectionChange($event)"
+    disableOptionCentering
+  >
+    <div class="d-flex align-items-center p-3 custom-search" *ngIf="searchable">
+      <input
+        matInput
+        class="me-3"
+        [placeholder]="searchOptions?.label ? searchOptions?.label : 'Search'"
+        [formControl]="searchCtrl"
+        matInput
+        (keydown)="$event.stopPropagation()"
+      />
+      <mat-icon matSuffix class="pointer" (click)="clearSelectionSearch()">{{
+        searchCtrl?.value?.length > 0 ? "close" : "search"
+      }}</mat-icon>
+    </div>
+    <mat-option
+      [matTooltip]="item?.extraData?.tooltip"
+      [value]="optionValue ? item[optionValue] : item"
+      *ngFor="let item of data"
+    >
+      {{ optionLabel ? item[optionLabel] : item }}
+    </mat-option>
+    <mat-option
+      class="text-center remove-checked"
+      *ngIf="!data?.length"
+      disabled
+    >
+      {{
+        searchOptions?.noEntriesFound
+          ? searchOptions?.noEntriesFound
+          : "No Data Found !"
+      }}
+    </mat-option>
+  </mat-select>
+  <mat-icon matSuffix *ngIf="displayClearBtn" (click)="emitClear($event)"
+    >close</mat-icon
+  >
+  <mat-error>
+    <de-error-message
+      [control]="controller"
+      [labelName]="label"
+    ></de-error-message>
+  </mat-error>
+</mat-form-field>

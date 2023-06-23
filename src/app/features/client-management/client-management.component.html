@@ -1,0 +1,24 @@
+<div
+  class="d-flex align-items-center w-100 mb-3 justify-content-{{
+    dataSource?.data?.length ? 'between' : 'end'
+  }}"
+>
+  <de-search
+    *ngIf="dataSource?.data?.length"
+    class="w-50"
+    (searchEmitter)="onSearch($event)"
+  ></de-search>
+  <button
+    mat-raised-button
+    color="primary"
+    routerLink="/data-elements/client-management/client-template"
+  >
+    <mat-icon>add</mat-icon>
+    Add New Client
+  </button>
+</div>
+<de-client-list
+  [dataSource]="dataSource"
+  (deleteEmitter)="list()"
+  (paginateEmitter)="handlePagination($event)"
+></de-client-list>

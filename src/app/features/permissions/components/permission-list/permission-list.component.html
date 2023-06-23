@@ -1,0 +1,7 @@
+<div class="example-sidenav-content">
+  <de-table
+    [dataSource]="dataSource"
+    (actionEmitter)="handleAction($event)"
+    (paginationEmitter)="paginateEmitter.emit($event)"
+  ></de-table>
+</div>

@@ -1,0 +1,70 @@
+<section id="login">
+  <div class="container">
+    <div class="card">
+      <div class="row w-100 mx-0">
+        <div class="col-md-6 p-5 d-flex align-items-center">
+          <div class="form-container">
+            <h3 class="fw-bold fs-4">Sign in to your account</h3>
+            <p class="text-muted fs-6 mt-4">
+              Sign in to your account so that you can use the online data
+            </p>
+            <form [formGroup]="loginForm" class="mt-5" (ngSubmit)="onSubmit()">
+              <div class="row mx-0 w-100">
+                <div class="col-12">
+                  <de-input
+                    [controller]="getControl('email')"
+                    [type]="'email'"
+                    [required]="true"
+                    [label]="'Email Address'"
+                    [placeholder]="'Email Address'"
+                  ></de-input>
+                </div>
+                <div class="col-12 mt-4">
+                  <de-input
+                    [controller]="getControl('password')"
+                    [type]="'password'"
+                    [required]="true"
+                    [label]="'Password'"
+                    [placeholder]="'Password'"
+                    [icon]="'remove_red_eye'"
+                    [minLength]="3"
+                    [isPassword]="true"
+                  ></de-input>
+                </div>
+                <div class="col-12 mt-3 d-flex justify-content-end">
+                  <a class="pointer">Forget Password</a>
+                </div>
+                <div class="col-12 mt-4">
+                  <button
+                    [disabled]="loginForm.invalid"
+                    class="w-100"
+                    mat-raised-button
+                    color="primary"
+                    type="submit"
+                  >
+                    Sign in
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="col-md-6 bg-primary p-5 d-flex justify-content-center align-items-center flex-column"
+        >
+          <img
+            class="logo d-flex"
+            src="./assets/imgs/logo-white.svg"
+            width="350"
+            alt="Logo"
+          />
+          <h2 class="text-white my-3">Data Elements</h2>
+          <p class="text-white">
+            An OE initiative to build Central, Redundant, and Always-fresh data
+            store
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

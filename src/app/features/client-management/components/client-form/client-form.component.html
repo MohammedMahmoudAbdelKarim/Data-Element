@@ -1,0 +1,137 @@
+<form
+  id="client-form"
+  class="bg-white p-5"
+  [formGroup]="clientForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h3 class="fw-bold fs-3 mb-5">
+    {{ clientDetails ? "Update" : "Create" }} Client
+  </h3>
+  <div class="row w-100 mx-0 align-items-center">
+    <div class="col-md-8">
+      <de-input
+        [controller]="getControl('name')"
+        [label]="'Client Name '"
+        [maxLength]="50"
+        className="w-100"
+        [required]="true"
+        [placeholder]="'Client Name'"
+      >
+      </de-input>
+    </div>
+    <div class="col-md-8 mt-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Owners</mat-label>
+        <mat-chip-grid
+          #chipGrid
+          aria-label="Enter keywords"
+          [formControl]="getControl('owners')"
+        >
+          <mat-chip-row
+            *ngFor="let email of emailsList"
+            (removed)="removeEmail(email)"
+          >
+            {{ email }}
+            <button matChipRemove aria-label="'remove ' + email">
+              <mat-icon color="warn">cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input
+          placeholder="Owner Email..."
+          [matChipInputFor]="chipGrid"
+          (matChipInputTokenEnd)="addEmail($event)"
+        />
+        <mat-hint align="end">
+          Press <kbd>Enter</kbd> to add new emails
+        </mat-hint>
+        <mat-error
+          *ngIf="
+            clientForm.get('owners')?.touched &&
+            clientForm.get('owners')?.invalid
+          "
+        >
+          <mat-hint
+            class="text-danger"
+            *ngIf="clientForm.get('owners').errors?.required"
+            >Owners Field is required.</mat-hint
+          >
+          <mat-hint
+            class="text-danger"
+            *ngIf="clientForm.get('owners').errors?.email"
+            >Owners Field is invalid.</mat-hint
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-8 mt-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>IP Whitelist</mat-label>
+        <mat-chip-grid
+          #chipGridIP
+          aria-label="Enter keywords"
+          [formControl]="getControl('ipWhitelist')"
+        >
+          <mat-chip-row
+            *ngFor="let address of apiWhiteList"
+            (removed)="removeIPAddress(address)"
+          >
+            {{ address }}
+            <button matChipRemove aria-label="'remove ' + ipWhitelist">
+              <mat-icon color="warn">cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input
+          matInput
+          placeholder="IP address for ex:(xxx.xxx.xxx.xxx)"
+          mask="IP"
+          [dropSpecialCharacters]="false"
+          [matChipInputFor]="chipGridIP"
+          (matChipInputTokenEnd)="addIPAddress($event)"
+        />
+        <mat-hint align="end">
+          Press <kbd>Enter</kbd> to add new IP address
+        </mat-hint>
+        <mat-error
+          *ngIf="
+            clientForm.get('ipWhitelist')?.touched &&
+            clientForm.get('ipWhitelist')?.invalid
+          "
+        >
+          <mat-hint class="text-danger">
+            <span
+              *ngIf="clientForm?.get('ipWhitelist')?.errors?.mask?.requiredMask"
+            >
+              Please type a correct IP address like (xxx.xxx.xxx.xxx).</span
+            >
+            <span *ngIf="!apiWhiteList.length"
+              >At least type one IP whitelist.</span
+            >
+          </mat-hint>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-5 mt-5">
+      <button
+        class="w-100"
+        mat-raised-button
+        color="primary"
+        [disabled]="clientForm?.invalid || !apiWhiteList.length"
+      >
+        {{ clientDetails ? "Update" : "Create" }}
+      </button>
+    </div>
+    <div class="col-md-3 mt-5">
+      <button
+        class="w-100"
+        mat-raised-button
+        color="basic"
+        routerLink="/data-elements/client-management"
+      >
+        cancel
+      </button>
+    </div>
+  </div>
+</form>

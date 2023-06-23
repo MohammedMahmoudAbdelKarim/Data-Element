@@ -1,0 +1,24 @@
+<div
+  class="d-flex align-items-center w-100 mb-3 justify-content-{{
+    dataSource?.data?.length ? 'between' : 'end'
+  }}"
+>
+  <de-search
+    *ngIf="dataSource?.data?.length"
+    class="w-50"
+    (searchEmitter)="onSearch($event)"
+  ></de-search>
+  <button
+    mat-raised-button
+    color="primary"
+    routerLink="/data-elements/permissions/permission-template"
+  >
+    <mat-icon>add</mat-icon>
+    Add New Permission
+  </button>
+</div>
+<de-permission-list
+  [dataSource]="dataSource"
+  (deleteEmitter)="list()"
+  (paginateEmitter)="handlePagination($event)"
+></de-permission-list>

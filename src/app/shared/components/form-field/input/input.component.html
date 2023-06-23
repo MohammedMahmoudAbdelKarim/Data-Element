@@ -1,0 +1,36 @@
+<mat-form-field appearance="outline" class="w-100">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [placeholder]="placeholder"
+    [formControl]="controller"
+    [min]="min"
+    [pattern]="pattern"
+    [required]="required"
+    [maxlength]="maxLength"
+    [type]="type"
+    (change)="onInputChange($event)"
+    [readonly]="isReadOnly"
+    [name]="controller"
+  />
+  <button
+    *ngIf="isPassword"
+    matSuffix
+    mat-icon-button
+    (click)="togglePassword()"
+    [attr.aria-label]="'Hide password'"
+    [attr.aria-pressed]="hide"
+    type="button"
+  >
+    <mat-icon color="primary">{{
+      hide ? "visibility_off" : "visibility"
+    }}</mat-icon>
+  </button>
+  <mat-icon matSuffix *ngIf="icon && !isPassword">{{ icon }}</mat-icon>
+  <mat-error>
+    <de-error-message
+      [control]="controller"
+      [labelName]="label"
+    ></de-error-message>
+  </mat-error>
+</mat-form-field>

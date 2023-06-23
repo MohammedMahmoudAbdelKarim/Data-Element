@@ -1,0 +1,47 @@
+<div id="delete-popup">
+  <div
+    class="d-flex justify-content-between align-items-center p-3 bg-danger mb-4"
+  >
+    <div class="d-flex align-items-center text-white">
+      <mat-icon>delete</mat-icon>
+      <h2 class="mb-0 ms-2">Delete</h2>
+    </div>
+    <button mat-button mat-dialog-close class="closeModal text-white">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-title>
+    <mat-icon color="warn" class="text-center fs-1 w-100 h-100"
+      >warning</mat-icon
+    >
+  </div>
+  <mat-dialog-content>
+    <h5 class="fs-4 fw-bold text-center">{{ message }}</h5>
+  </mat-dialog-content>
+  <mat-dialog-actions class="mb-1 w-100" align="center">
+    <div class="row w-100 mx-0">
+      <div class="col-6">
+        <button
+          type="submit"
+          mat-raised-button
+          color="warn"
+          class="w-100"
+          [mat-dialog-close]="true"
+          cdkFocusInitial
+        >
+          Yes, Delete
+        </button>
+      </div>
+      <div class="col-6">
+        <button
+          class="w-100"
+          type="button"
+          mat-raised-button
+          [mat-dialog-close]="false"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</div>

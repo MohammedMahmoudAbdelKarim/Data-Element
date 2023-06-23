@@ -1,0 +1,139 @@
+<label class="fw-bolder mb-2" *ngIf="label">
+  {{ label }}
+  <sub *ngIf="required" class="text-danger">*</sub>
+</label>
+<div
+  deDrag
+  (files)="filesDropped($event)"
+  (appDropZone)="onHandleFileInput($event)"
+  *ngIf="
+    (!multiple && !display && uploadedFiles?.length === 0) ||
+    (multiple && !display && uploadedFiles?.length < options?.maxFilesLimit)
+  "
+  (click)="fileAttached.click()"
+  class="d-flex align-items-center flex-column pointer position-relative justify-content-center mb-3 dropZone py-5"
+>
+  <div class="align-items-center d-flex flex-column py-5">
+    <mat-icon class="mb-3 fs-1 w-100 h-100 text-center" color="primary"
+      >cloud_upload</mat-icon
+    >
+    <p class="text-primary fs-4 text-center mb-0">
+      Drag and Drop or
+      <strong class="fw-bolder"> Browse </strong>
+    </p>
+  </div>
+  <input
+    type="file"
+    class="d-none"
+    (change)="onHandleFileInput($event?.target?.files)"
+    (click)="fileAttached.value = ''"
+    #fileAttached
+    [multiple]="multiple"
+    [accept]="options?.allowedExtensions"
+  />
+</div>
+<div *ngIf="displayedFiles?.length" class="uploaded-continer mx-3">
+  <ng-container *ngFor="let file of displayedFiles; trackBy: trackByFun">
+    <div class="uploaded-file-item">
+      <div class="uploaded-icon">
+        <img src="./assets/imgs/json-file.png" alt="JSON" />
+      </div>
+      <div
+        class="d-flex flex-column justify-content-center flex-grow-1 mx-3 text-truncate title-size"
+      >
+        <p class="file-name d-flex align-items-center">
+          <span class="name text-truncate d-inline-block">{{
+            file?.name
+          }}</span>
+        </p>
+        <span *ngIf="file?.size" class="file-size">{{
+          file ? (file?.size | fileSize) : (0 | fileSize)
+        }}</span>
+      </div>
+      <div class="uploaded-file-actions mx-n1 mt-2">
+        <button
+          *ngIf="!options?.disableDownload"
+          (click)="downloadEmitter.emit(file)"
+          class="download"
+        >
+          <span class="sfi sfi-download font-13 text-color-coral"></span>
+        </button>
+        <button *ngIf="!options?.disableAnchor" class="info mx-1">
+          <span class="sfi stcIcon-info font-13 text-color-coral"></span>
+        </button>
+        <button
+          *ngIf="!options?.disableDelete"
+          (click)="onDeleteDisplayedFile(file)"
+          class="delete mx-1"
+        >
+          <span class="sfi stcIcon-trash font-13 text-color-coral"></span>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<ng-container *ngIf="uploadedFiles?.length">
+  <div class="row">
+    <div class="col-12 mb-3" *ngFor="let file of uploadedFiles; let i = index">
+      <div class="uploaded-file-item">
+        <div class="uploaded-icon progress-upload">
+          <img src="./assets/imgs/json-file.png" alt="JSON" />
+        </div>
+        <div
+          class="d-flex flex-column justify-content-center flex-grow-1 text-truncate mx-3"
+        >
+          <p class="fw-bolder fs-5">{{ file?.name }}</p>
+          <span class="text-muted fs-6">{{
+            file ? (+file?.size | fileSize) : (0 | fileSize)
+          }}</span>
+        </div>
+        <div class="uploaded-file-actions mx-n1 mt-2">
+          <button
+            mat-mini-fab
+            matTooltip="Delete File"
+            color="warn"
+            (click)="onDeleteUploadedFile(file)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<div class="attachments-error">
+  <mat-error
+    class="d-flex align-items-center text-danger mt-2"
+    *ngIf="!allowedFileType"
+  >
+    <mat-icon class="me-2">error</mat-icon>
+    <span>
+      This file extension is not allowed [<i class="fw-bolder">{{
+        options?.allowedExtensions?.join(",")
+      }}</i
+      >]
+    </span>
+  </mat-error>
+  <mat-error
+    class="d-flex align-items-center text-danger mt-2"
+    *ngIf="!allowedFileSize"
+  >
+    <mat-icon class="me-2">error</mat-icon>
+    <span>This file is too large</span>
+  </mat-error>
+
+  <mat-error
+    class="d-flex align-items-center text-danger mt-2"
+    *ngIf="allowedFileSize && !allowedFilesSize"
+  >
+    <mat-icon class="me-2">error</mat-icon>
+    <span>This file is too large</span>
+  </mat-error>
+  <mat-error
+    class="d-flex align-items-center text-danger mt-2"
+    *ngIf="!fileNotDuplicated"
+  >
+    <mat-icon class="me-2">error</mat-icon>
+    <span>The file is duplicated</span>
+  </mat-error>
+</div>

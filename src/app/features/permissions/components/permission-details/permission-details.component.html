@@ -1,0 +1,54 @@
+<section id="client-details" class="bg-white p-3" *ngIf="permissionDetails">
+  <ul class="p-3 list-unstyled row w-100 mx-0">
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Client Name</h4>
+      <div
+        class="d-flex align-items-center text-primary"
+        [routerLink]="['/data-elements/client-management/client-details']"
+        [queryParams]="{
+          id: permissionDetails?.client?.id
+        }"
+      >
+        <mat-icon>link</mat-icon>
+        <span class="ms-2 pointer load">{{
+          permissionDetails?.client?.name
+        }}</span>
+      </div>
+    </li>
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Model Name</h4>
+      <div
+        class="d-flex align-items-center text-primary"
+        [routerLink]="[
+          '/data-elements/data-model-management/data-model-details'
+        ]"
+        [queryParams]="{
+          id: permissionDetails?.model?.id
+        }"
+      >
+        <mat-icon>link</mat-icon>
+        <span class="ms-2 pointer load">{{
+          permissionDetails?.model?.name
+        }}</span>
+      </div>
+    </li>
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Status</h4>
+      <span class="ms-2 status {{ permissionDetails?.accessLevel }}">{{
+        permissionDetails?.accessLevel
+      }}</span>
+    </li>
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Rate Per Day</h4>
+      <span class="ms-2 text-muted load">{{
+        permissionDetails?.ratePerDay
+      }}</span>
+    </li>
+    <li class="user-select-none col-md-6 mt-4">
+      <h4 class="mb-3 fw-bolder">Rate Per Hour</h4>
+      <span class="ms-2 text-muted load">{{
+        permissionDetails?.ratePerHour
+      }}</span>
+    </li>
+  </ul>
+</section>
