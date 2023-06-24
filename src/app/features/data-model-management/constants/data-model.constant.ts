@@ -7,3 +7,12 @@ export const DATA_MODEL_FILE_UPLOAD_OPTIONS: FileUploadOptions = {
   disableAnchor: false,
   disableDownload: false,
 };
+
+export const DATA_MODEL_UPLOAD_OPTIONS: FileUploadOptions = {
+  maxFileSize: 5,
+  allowedExtensions: ['.json', '.csv'],
+  maxFilesLimit: 1,
+  disableDelete: true,
+  disableAnchor: false,
+  disableDownload: false,
+};

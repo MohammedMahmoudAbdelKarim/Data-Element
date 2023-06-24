@@ -66,5 +66,56 @@
         [modelId]="'modelId'"
       ></de-fields-list>
     </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon me-2">upload</mat-icon>
+        <span>Upload Data Model</span>
+      </ng-template>
+      <form
+        [formGroup]="uploadModelForm"
+        class="mt-3"
+        (submit)="onSubmitUploadModel()"
+      >
+        <div class="col-lg-8 mt-3">
+          <de-select
+            [controller]="getControl('type')"
+            optionLabel="name"
+            optionValue="name"
+            [label]="'Operation Type '"
+            [placeholder]="'Operation Type'"
+            className="w-100"
+            [data]="[{ id: 1, name: 'TYPE' }]"
+            [className]="'custom-form-field w-100'"
+          ></de-select>
+        </div>
+        <div class="col-lg-8 mt-3">
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            (click)="onCreateNewField()"
+          >
+            <mat-icon>download</mat-icon>
+            Download Template
+          </button>
+        </div>
+        <div class="col-lg-8 mt-3">
+          <div class="file-upload-container">
+            <de-file-uploader
+              [label]="'Upload JSON File'"
+              [required]="true"
+              (filesList)="onSelectFile($event)"
+              [multiple]="false"
+              [options]="dataModelFileUploadOptions"
+            ></de-file-uploader>
+          </div>
+        </div>
+        <div class="col-lg-8 mt-4">
+          <button class="w-100" mat-raised-button color="primary">
+            Upload
+          </button>
+        </div>
+      </form>
+    </mat-tab>
   </mat-tab-group>
 </section>
