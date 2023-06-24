@@ -157,6 +157,7 @@ export class FileUploaderComponent {
   public filesDropped(file: any): void {
     if (this.handleOptionsValidity(file[0]['file'])) {
       this.uploadedFiles.push(file[0]['file']);
+      this.filesList.emit(this.uploadedFiles);
     }
   }
 }

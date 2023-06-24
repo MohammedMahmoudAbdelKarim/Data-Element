@@ -124,6 +124,7 @@ export class DataModelFormComponent implements OnInit {
       this._dataModelService.uploadSample(formData).subscribe({
         next: (res: FieldModel[] | undefined) => {
           this.fieldsList = res ?? [];
+          this.dataModelForm.get('fields')?.setValue(this.fieldsList);
         },
       })
     );

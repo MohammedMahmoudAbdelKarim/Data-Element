@@ -43,25 +43,13 @@
     </div>
     <div class="col-lg-8 mt-3">
       <de-select
-        [controller]="getControl('fields')"
-        optionLabel="name"
-        [label]="'Fields '"
-        [placeholder]="'Fields'"
-        className="w-100"
-        [data]="fieldsList"
-        [multiple]="true"
-        [className]="'custom-form-field w-100'"
-      ></de-select>
-    </div>
-    <div class="col-lg-8 mt-3">
-      <de-select
         [controller]="getControl('key')"
         optionLabel="name"
         optionValue="name"
         [label]="'Key '"
         [placeholder]="'Key'"
         className="w-100"
-        [data]="dataModelForm.get('fields')?.value"
+        [data]="fieldsList"
         [className]="'custom-form-field w-100'"
       ></de-select>
     </div>
