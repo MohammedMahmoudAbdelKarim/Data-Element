@@ -31,7 +31,6 @@ export class TableComponent {
   @Input() dataSource!: DataSourceModel;
   @Output() actionEmitter = new EventEmitter();
   @Output() paginationEmitter = new EventEmitter();
-
   public onHandleAction(element: any, action: string, event: Event) {
     this.actionEmitter.emit({ element, action });
     event.stopPropagation();
