@@ -1,7 +1,7 @@
 import { PaginationComponent } from './../../shared/components/pagination/pagination.component';
 import { FileUploaderComponent } from './../../shared/components/file-uploader/file-uploader.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DataModelManagementRoutingModule } from './data-model-management-routing.module';
 import { DataModelManagementComponent } from './data-model-management.component';
 import { DataModelListComponent } from './components/data-model-list/data-model-list.component';
@@ -23,6 +23,8 @@ import { CoreModule } from 'src/app/core/core.module';
 import { DataModelService } from './services/data-model.service';
 import { DomainService } from '../domain-management/services/domain.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { UploadModelComponent } from './components/upload-model/upload-model.component';
+import { HistoryLogComponent } from './components/history-log/history-log.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     DataModelDetailsComponent,
     FieldsListComponent,
     FieldFormComponent,
+    UploadModelComponent,
+    HistoryLogComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +57,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSlideToggleModule,
     PaginationComponent,
   ],
-  providers: [DataModelService, DomainService],
+  providers: [DataModelService, DomainService, DatePipe],
 })
 export class DataModelManagementModule {}

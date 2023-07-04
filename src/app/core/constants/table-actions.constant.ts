@@ -22,3 +22,9 @@ export const EDIT_ACTION: AllowedActions = {
   icon: 'edit',
   action: 'EDIT',
 };
+
+export const DOWNLOAD_ACTION: AllowedActions = {
+  label: 'Download',
+  icon: 'download',
+  action: 'DOWNLOAD',
+};

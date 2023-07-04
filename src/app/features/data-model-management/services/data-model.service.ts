@@ -9,7 +9,7 @@ import { map } from 'rxjs';
   providedIn: 'root',
 })
 export class DataModelService {
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   public list(params?: FilterCriteriaModel) {
     return this._http
@@ -51,10 +51,12 @@ export class DataModelService {
   }
 
   public uploadSample(file: FormData, params?: any) {
-    return this._http.post(`${API_URL('model')}/upload-sample`, file, {
-      params: { ...params },
-      observe: 'response',
-    }).pipe(map((res: any) => res['body']['payload']));;
+    return this._http
+      .post(`${API_URL('model')}/upload-sample`, file, {
+        params: { ...params },
+        observe: 'response',
+      })
+      .pipe(map((res: any) => res['body']['payload']));
   }
 
   public getTransformers(params?: any) {
@@ -64,5 +66,30 @@ export class DataModelService {
         observe: 'response',
       })
       .pipe(map((res: any) => res['body']['payload']));
+  }
+
+  public uploadModelFile(modelId: number, body: FormData, params?: any) {
+    return this._http.post(`${API_URL('model')}/${modelId}/upload`, body, {
+      params: { ...params },
+      observe: 'response',
+    });
+  }
+
+  public listHistoryLog(params?: FilterCriteriaModel) {
+    return this._http
+      .get(`${API_URL('jobs')}`, {
+        params: { ...params },
+        observe: 'response',
+      })
+      .pipe(map((res: any) => res['body']['payload']));
+  }
+
+  public downloadModelFile(fileId: number, params?: any) {
+    return this._http
+      .get(`${API_URL('jobs')}/${fileId}/files`, {
+        params: { ...params },
+        observe: 'response',
+      })
+      .pipe(map((res: any) => res['body']));
   }
 }

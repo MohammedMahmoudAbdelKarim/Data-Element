@@ -26,7 +26,7 @@
             [ngClass]="
               col?.classes
                 ? col?.classes + ' ' + (element | mapValue : col?.colKey)
-                : ''
+                : (element | mapValue : col?.colKey)
             "
             [matTooltip]="element | mapValue : col?.colKey"
             matTooltipPosition="below"

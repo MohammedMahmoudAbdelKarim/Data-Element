@@ -16,7 +16,7 @@ export const DATA_MODEL_TABLE_HEADERS: TableHeaders[] = [
   {
     title: 'Path',
     colKey: 'path',
-    classes: 'fst-italic text-white bg-primary px-3'
+    classes: 'fst-italic text-white bg-primary px-3',
   },
   {
     title: 'Transformer',
@@ -32,5 +32,30 @@ export const FIELDS_TABLE_HEADERS: TableHeaders[] = [
   {
     title: 'Last Update Date',
     colKey: 'lastModifiedAt',
+  },
+];
+
+export const HISTORY_TABLE_HEADERS: TableHeaders[] = [
+  {
+    title: 'Model Type',
+    colKey: 'modeType',
+    classes: 'fw-bolder',
+  },
+  {
+    title: 'Status',
+    colKey: 'status',
+    classes: 'status',
+  },
+  {
+    title: 'Update Type',
+    colKey: 'updateType',
+  },
+  {
+    title: 'Upload Date',
+    colKey: 'uploadedDateTime',
+  },
+  {
+    title: 'Uploader Email',
+    colKey: 'uploaderEmail',
   },
 ];

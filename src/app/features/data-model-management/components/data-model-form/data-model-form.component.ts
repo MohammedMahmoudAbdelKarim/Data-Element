@@ -154,8 +154,8 @@ export class DataModelFormComponent implements OnInit {
       request$.subscribe(() => {
         const message = this.modelId ? 'Updated' : 'Created';
         this._toastr.success(
-          `${message}!`,
-          `Domain has been ${message.toLowerCase()} successfully`
+          `data model has been ${message.toLowerCase()} successfully`,
+          `${message}!`
         );
         this._rotuer.navigateByUrl('/data-elements/data-model-management');
       })

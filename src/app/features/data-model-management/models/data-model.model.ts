@@ -19,3 +19,16 @@ export interface FieldsFormData {
   numberMax?: number;
   numberMin?: number;
 }
+
+export interface HistoryLog {
+  id?: number;
+  startDate?: string;
+  endDate?: string;
+  modeType?: string;
+  status?: string;
+  modelId?: string;
+  uploaderEmail?: string;
+  uploadedDateTime?: string;
+  updateType?: string;
+  jobRunnerEmail?: string;
+}

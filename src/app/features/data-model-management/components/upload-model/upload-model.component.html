@@ -1,0 +1,43 @@
+<form
+  [formGroup]="uploadModelForm"
+  class="mt-4"
+  (submit)="onSubmitUploadModel()"
+>
+  <div class="col-lg-8 mt-3">
+    <de-select
+      [controller]="getControl('type')"
+      [label]="'Operation Type '"
+      [placeholder]="'Operation Type'"
+      className="w-100"
+      [data]="operationType"
+      [className]="'custom-form-field w-100'"
+    ></de-select>
+  </div>
+  <!-- <div class="col-lg-8 mt-3">
+    <button mat-raised-button color="primary" type="button">
+      <mat-icon>download</mat-icon>
+      Download Template
+    </button>
+  </div> -->
+  <div class="col-lg-8 mt-3">
+    <div class="file-upload-container">
+      <de-file-uploader
+        [label]="'Upload JSON/CSV File'"
+        [required]="true"
+        (filesList)="onSelectFile($event)"
+        [multiple]="false"
+        [options]="dataModelFileUploadOptions"
+      ></de-file-uploader>
+    </div>
+  </div>
+  <div class="col-lg-8 mt-4">
+    <button
+      class="w-100"
+      mat-raised-button
+      color="primary"
+      [disabled]="uploadModelForm.invalid || !fileContent"
+    >
+      Upload
+    </button>
+  </div>
+</form>

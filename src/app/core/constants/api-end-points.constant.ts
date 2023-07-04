@@ -7,5 +7,7 @@ export const COLLECTION = {
   auth: 'auth',
   fields: 'fields',
   permissions: 'permissions',
+  jobs: 'jobs',
 } as const;
-export const API_URL = (key: keyof typeof COLLECTION) => `${BASE_URL}/${COLLECTION[key]}`;
+export const API_URL = (key: keyof typeof COLLECTION) =>
+  `${BASE_URL}/${COLLECTION[key]}`;

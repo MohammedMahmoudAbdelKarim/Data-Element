@@ -6,9 +6,6 @@ import { FieldModel } from '../../models/fields.model';
 import { DataModelService } from '../../services/data-model.service';
 import { ActivatedRoute } from '@angular/router';
 import { DataModelFormDataModel } from '../../models/data-model.model';
-import { FileUploadOptions } from 'src/app/shared/models/uploader-options.model';
-import { DATA_MODEL_UPLOAD_OPTIONS } from '../../constants/data-model.constant';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'de-data-model-details',
@@ -18,33 +15,17 @@ export class DataModelDetailsComponent implements OnInit, OnDestroy {
   private readonly _subscription$: Subscription = new Subscription();
   public modelId!: number;
   public modelDetails!: DataModelFormDataModel;
-  public dataModelFileUploadOptions: FileUploadOptions =
-    DATA_MODEL_UPLOAD_OPTIONS;
-  public uploadModelForm!: FormGroup;
   @Input() fieldList!: FieldModel[];
 
   constructor(
     public dialog: MatDialog,
     private _dataModelService: DataModelService,
-    private _route: ActivatedRoute,
-    private _fb: FormBuilder
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.modelId = +this._route.snapshot.queryParams['id'];
     this.getDataModelDetails();
-    this.initForm();
-  }
-
-  public initForm(): void {
-    this.uploadModelForm = this._fb.group({
-      type: this._fb.control(null),
-      file: this._fb.control(null),
-    });
-  }
-
-  public getControl(controlName: string): AbstractControl {
-    return this.uploadModelForm?.controls[controlName];
   }
 
   public getDataModelDetails() {
@@ -55,14 +36,6 @@ export class DataModelDetailsComponent implements OnInit, OnDestroy {
         },
       })
     );
-  }
-
-  public onSelectFile(files: File[]): void {
-    if (files.length) {
-      const file = files[0];
-      const FORM_DATA = new FormData();
-      FORM_DATA.append('file', file);
-    }
   }
 
   public onCreateNewField(): void {
@@ -77,8 +50,6 @@ export class DataModelDetailsComponent implements OnInit, OnDestroy {
       })
     );
   }
-
-  public onSubmitUploadModel(): void {}
 
   ngOnDestroy(): void {
     this._subscription$.unsubscribe();
