@@ -14,20 +14,31 @@ export const FIELD_TABLE_HEADERS: TableHeaders[] = [
     colKey: 'required',
   },
   {
-    title: 'Number Range',
-    colKey: 'numberRange',
+    title: 'Max Length',
+    colKey: 'maxLength',
   },
   {
-    title: 'String Length',
-    colKey: 'stringLength',
-  }, {
+    title: 'Min Length',
+    colKey: 'minLength',
+  },
+  {
+    title: 'Maximum',
+    colKey: 'maximum',
+  },
+  {
+    title: 'Minimum',
+    colKey: 'minimum',
+  },
+  {
     title: 'Built-In Format',
     colKey: 'builtInFormat',
-  }, {
-    title: 'Min Number',
-    colKey: 'numberMin',
-  }, {
-    title: 'Max Number',
-    colKey: 'numberMax',
-  }
+  },
+  {
+    title: 'Exclusive Maximum',
+    colKey: 'exclusiveMaximum',
+  },
+  {
+    title: 'Exclusive Minimum',
+    colKey: 'exclusiveMinimum',
+  },
 ];

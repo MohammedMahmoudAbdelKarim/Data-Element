@@ -75,6 +75,14 @@ export class DataModelService {
     });
   }
 
+  public downloadTemplate(modelId: number, params?: any) {
+    return this._http
+      .get(`${API_URL('model')}/${modelId}/upload-template`, {
+        observe: 'response',
+      })
+      .pipe(map((res: any) => res['body']['payload']));
+  }
+
   public listHistoryLog(params?: FilterCriteriaModel) {
     return this._http
       .get(`${API_URL('jobs')}`, {

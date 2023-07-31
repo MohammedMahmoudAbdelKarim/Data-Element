@@ -12,6 +12,7 @@ import { DATA_MODEL_UPLOAD_OPTIONS } from '../../constants/data-model.constant';
 import { FileUploadOptions } from 'src/app/shared/models/uploader-options.model';
 import { OPERATION_TYPES } from '../../constants/data-model-operation-type';
 import { ToastrService } from 'ngx-toastr';
+import { AngularCsv } from 'angular-csv-ext/dist/Angular-csv';
 
 @Component({
   selector: 'de-upload-model',
@@ -70,6 +71,20 @@ export class UploadModelComponent implements OnInit {
             this._rotuer.navigateByUrl('/data-elements/data-model-management');
           },
         })
+    );
+  }
+
+  public downloadCSVTemplate(): void {
+    this._subscription$.add(
+      this._dataModelService.downloadTemplate(this.modelId).subscribe({
+        next: (res) => {
+          new AngularCsv([], 'template', {
+            useHeader: true,
+            useBom: false,
+            headers: res.csvHeaders,
+          });
+        },
+      })
     );
   }
 

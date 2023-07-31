@@ -41,13 +41,13 @@ export class FieldsListComponent implements OnDestroy {
   @Input() modelId!: string;
   @Input() data!: FieldModel[];
   @Output() editEmitter = new EventEmitter();
+  @Output() paginationEmitter = new EventEmitter();
 
   constructor(public dialog: MatDialog) {}
 
   ngOnChanges(): void {
     if (this.data) {
       this.dataSource.data = this.data;
-      this.dataSource.pagination.totalElements = this.data.length;
     }
   }
 
