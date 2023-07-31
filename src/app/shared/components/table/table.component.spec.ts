@@ -11,7 +11,7 @@ import { MapValuePipe } from './../../pipes/map-value.pipe';
 import { PaginationComponent } from './../pagination/pagination.component';
 import { TableComponent } from './table.component';
 import { DataSourceModel } from 'src/app/core/models/data-source.model';
-import { DATA_MODEL_TABLE_HEADERS } from 'src/app/features/data-model-management/constants/field-table-header';
+import { DATA_MODEL_TABLE_HEADERS } from 'src/app/features/data-model-management/constants/data-model-table-header';
 
 describe('TableComponent', () => {
   let component: TableComponent;
