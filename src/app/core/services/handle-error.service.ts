@@ -22,6 +22,7 @@ export class HandleErrorService {
       switch (err.status) {
         case 400:
           errorMessage = 'Bad Request';
+          this.handleBackendValidations(err);
           break;
         case 401:
           errorMessage = `You need to Login to do this action.`;
@@ -55,13 +56,22 @@ export class HandleErrorService {
     }
   }
   public handleBackendValidations(error: HttpErrorResponse) {
-    const errors: any = {};
-    for (const key in error.error.errors) {
-      if (Object.prototype.hasOwnProperty.call(error.error.errors, key)) {
-        errors[key] = error.error.errors[key];
-        this._toaster.error(errors[key][0], 'Validation Error');
+    console.log(error.error);
+
+    if (error.error.errors) {
+      this._toaster.error(
+        error.error.errors[0]['enMessage'],
+        'Validation Error'
+      );
+    } else {
+      const errors: any = {};
+      for (const key in error.error.errors) {
+        if (Object.prototype.hasOwnProperty.call(error.error.errors, key)) {
+          errors[key] = error.error.errors[key];
+          this._toaster.error(errors[key][0], 'Validation Error');
+        }
       }
     }
-    this._config.addServerErrors(errors);
+    this._config.addServerErrors(error);
   }
 }

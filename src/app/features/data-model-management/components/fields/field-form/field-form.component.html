@@ -29,17 +29,53 @@
       </div>
       <div class="col-lg-6 mb-3">
         <de-input
-          [controller]="getControl('numberRange')"
-          [label]="'Number Range '"
-          [placeholder]="'Number Range'"
+          [controller]="getControl('minLength')"
+          [label]="'Min Length '"
+          [placeholder]="'Min Length'"
+          [type]="'number'"
+          [min]="0"
         >
         </de-input>
       </div>
       <div class="col-lg-6 mb-3">
         <de-input
-          [controller]="getControl('stringLength')"
-          [label]="'String Length '"
-          [placeholder]="'String Length'"
+          [controller]="getControl('maxLength')"
+          [label]="'Max Length '"
+          [placeholder]="'Max Length'"
+          [type]="'number'"
+          [min]="0"
+        >
+        </de-input>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <de-input
+          [controller]="getControl('minimum')"
+          [label]="'Minimum '"
+          [placeholder]="'Minimum'"
+        >
+        </de-input>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <de-input
+          [controller]="getControl('maximum')"
+          [label]="'Maximum '"
+          [placeholder]="'Maximum'"
+        >
+        </de-input>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <de-input
+          [controller]="getControl('exclusiveMinimum')"
+          [label]="'Exclusive Minimum '"
+          [placeholder]="'Exclusive Minimum'"
+        >
+        </de-input>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <de-input
+          [controller]="getControl('exclusiveMaximum')"
+          [label]="'Exclusive Maximum '"
+          [placeholder]="'Exclusive Maximum'"
         >
         </de-input>
       </div>
@@ -51,22 +87,6 @@
           [placeholder]="'Built-In Format'"
         >
         </de-select>
-      </div>
-      <div class="col-lg-6 mb-3">
-        <de-input
-          [controller]="getControl('numberMax')"
-          [label]="'Max Number '"
-          [placeholder]="'Max Number'"
-        >
-        </de-input>
-      </div>
-      <div class="col-lg-6 mb-3">
-        <de-input
-          [controller]="getControl('numberMin')"
-          [label]="'Min Number '"
-          [placeholder]="'Min Number'"
-        >
-        </de-input>
       </div>
       <div class="col-lg-6 mb-3">
         <h4 class="mb-3 fw-bolder">Required</h4>

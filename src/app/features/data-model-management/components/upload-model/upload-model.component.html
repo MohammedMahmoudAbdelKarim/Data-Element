@@ -13,12 +13,17 @@
       [className]="'custom-form-field w-100'"
     ></de-select>
   </div>
-  <!-- <div class="col-lg-8 mt-3">
-    <button mat-raised-button color="primary" type="button">
+  <div class="col-lg-8 mt-3">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="downloadCSVTemplate()"
+    >
       <mat-icon>download</mat-icon>
       Download Template
     </button>
-  </div> -->
+  </div>
   <div class="col-lg-8 mt-3">
     <div class="file-upload-container">
       <de-file-uploader

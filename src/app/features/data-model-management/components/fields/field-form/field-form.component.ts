@@ -51,11 +51,13 @@ export class FieldFormComponent implements OnInit {
       ]),
       type: this._fb.control(null, [Validators.required]),
       required: this._fb.control(false),
-      numberRange: this._fb.control(null),
-      stringLength: this._fb.control(null),
+      minLength: this._fb.control(null),
+      maxLength: this._fb.control(null),
       builtInFormat: this._fb.control(null),
-      numberMax: this._fb.control(null),
-      numberMin: this._fb.control(null),
+      minimum: this._fb.control(null),
+      maximum: this._fb.control(null),
+      exclusiveMinimum: this._fb.control(null),
+      exclusiveMaximum: this._fb.control(null),
     });
   }
 

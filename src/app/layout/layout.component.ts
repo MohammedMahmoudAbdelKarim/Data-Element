@@ -1,4 +1,3 @@
-import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 import { CoreModule } from './../core/core.module';
 import { FooterComponent } from './../shared/components/footer/footer.component';
 import { NotificationComponent } from './../shared/components/notification/notification.component';
@@ -37,7 +36,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     NotificationComponent,
     MatTooltipModule,
     FooterComponent,
-    NgDynamicBreadcrumbModule,
   ],
 })
 export class LayoutComponent implements OnInit {
