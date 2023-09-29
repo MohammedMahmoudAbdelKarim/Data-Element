@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseURL: 'https://4b44-41-233-229-15.ngrok-free.app/v1',
+  baseURL: 'http://ec2-54-91-132-87.compute-1.amazonaws.com:9061/admin/v1',
 };

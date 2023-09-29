@@ -2,14 +2,7 @@ import { Subscription } from 'rxjs';
 import { DataSourceModel } from 'src/app/core/models/data-source.model';
 import { ConfirmPopupComponent } from './../../../../shared/components/confirm-popup/confirm-popup.component';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  Component,
-  OnInit,
-  Input,
-  EventEmitter,
-  Output,
-  OnDestroy,
-} from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataModelService } from '../../services/data-model.service';
 import { ToastrService } from 'ngx-toastr';

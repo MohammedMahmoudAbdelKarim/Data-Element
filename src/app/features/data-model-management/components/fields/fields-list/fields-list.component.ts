@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   OnDestroy,
 } from '@angular/core';
@@ -17,6 +16,7 @@ import {
 } from 'src/app/core/constants';
 import { FIELD_TABLE_HEADERS } from '../../../constants/field-table-header';
 import { FieldFormComponent } from '../field-form/field-form.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'de-fields-list',
@@ -48,7 +48,17 @@ export class FieldsListComponent implements OnDestroy {
   ngOnChanges(): void {
     if (this.data) {
       this.dataSource.data = this.data;
+      this.dataSource.pagination.limit = this.data.length;
+      this.dataSource.pagination.totalElements = this.data.length;
+      this.dataSource.pagination.offset = 0;
+      this.paginationEmitter.emit(this.dataSource.pagination);
     }
+  }
+
+  public handlePageEvent(event: PageEvent): void {
+    this.dataSource.pagination.offset = event.pageIndex;
+    this.dataSource.pagination.limit = event.pageSize;
+    this.paginationEmitter.emit(event);
   }
 
   public handleEditField(event: { element: FieldModel; action: string }): void {
