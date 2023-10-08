@@ -39,6 +39,10 @@ footer {
   outline: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-#toast-container>div {
+#toast-container > div {
   opacity: 1;
+}
+
+:disabled {
+  opacity: 0.5;
 }
