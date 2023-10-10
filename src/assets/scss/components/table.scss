@@ -6,7 +6,7 @@ mat-table {
   }
 
   mat-header-cell {
-    font-family: "Play" !important;
+    font-family: "WorkSans" !important;
     color: #fff !important;
     font-weight: 900 !important;
   }
@@ -17,7 +17,7 @@ mat-row:nth-child(odd) {
 }
 
 mat-cell {
-  font-family: "Play" !important;
+  font-family: "WorkSans" !important;
   padding: 20px !important;
 }
 
@@ -39,7 +39,6 @@ mat-cell {
     color: #fff;
     font-weight: 900;
   }
-
 }
 
 .mat-mdc-fab {
