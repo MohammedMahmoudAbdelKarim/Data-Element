@@ -42,22 +42,26 @@ export class FieldsListComponent implements OnDestroy {
   @Input() data!: FieldModel[];
   @Output() editEmitter = new EventEmitter();
   @Output() paginationEmitter = new EventEmitter();
+  limit: number = 10;
 
   constructor(public dialog: MatDialog) {}
 
   ngOnChanges(): void {
     if (this.data) {
-      this.dataSource.data = this.data;
-      this.dataSource.pagination.limit = this.data.length;
+      this.dataSource.data = this.data.slice(0, 10);
+      this.dataSource.pagination.limit = this.limit;
       this.dataSource.pagination.totalElements = this.data.length;
       this.dataSource.pagination.offset = 0;
       this.paginationEmitter.emit(this.dataSource.pagination);
     }
   }
 
-  public handlePageEvent(event: PageEvent): void {
+  public handlePageEvent(event: PageEvent | any): void {
     this.dataSource.pagination.offset = event.pageIndex;
     this.dataSource.pagination.limit = event.pageSize;
+    const startIndex = +event.currentPage * +event.pageSize;
+    const endIndex = +startIndex + +event.pageSize;
+    this.dataSource.data = this.data.slice(startIndex, endIndex);
     this.paginationEmitter.emit(event);
   }
 
