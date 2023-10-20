@@ -9,109 +9,11 @@ import { DATA_MODEL_TABLE_HEADERS } from '../data-model-management/constants/dat
   styleUrls: ['./user-management.component.scss'],
 })
 export class UserManagementComponent {
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
 
   dataSource = {
     columns: [...DATA_MODEL_TABLE_HEADERS, { title: '', colKey: 'actions' }],
-    data: [
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-
-      {
-        id: '#MIIDW5656L',
-        name: 'Domain_Name',
-        dataModel: 5,
-        lastModifiedAt: '28 March 2023',
-      },
-    ],
+    data: [],
     columnsHeaders: [
       ...DATA_MODEL_TABLE_HEADERS,
       { title: '', colKey: 'actions' },

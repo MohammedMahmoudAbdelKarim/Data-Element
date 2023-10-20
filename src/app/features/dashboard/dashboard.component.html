@@ -4,5 +4,16 @@
     <p class="text-muted">
       An OE initiative to build Central, Redundant, and Always-fresh data store
     </p>
+    <div class="d-flex col-8 card position-relative h-50 p-5">
+      <canvas
+        baseChart
+        [labels]="doughnutChartLabels"
+        [datasets]="doughnutChartDatasets"
+        [options]="doughnutChartOptions"
+        [legend]="true"
+        [type]="'doughnut'"
+      >
+      </canvas>
+    </div>
   </div>
 </section>
