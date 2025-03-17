@@ -22,7 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         this._handleError.handleError(error);
-        this._handleError.handleBackendValidations(error);
+        // this._handleError.handleBackendValidations(error);
         return throwError('Something bad happened; please try again later.');
       })
     );

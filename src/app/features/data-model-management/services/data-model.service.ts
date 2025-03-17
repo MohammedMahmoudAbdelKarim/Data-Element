@@ -4,7 +4,8 @@ import { API_URL } from 'src/app/core/constants';
 import { FilterCriteriaModel } from 'src/app/core/models';
 import { DataModelFormDataModel } from '../models/data-model.model';
 import { map } from 'rxjs';
-
+import { environment } from 'src/environments/environment';
+const BASE_URL = environment.baseURL;
 @Injectable({
   providedIn: 'root',
 })
@@ -61,7 +62,7 @@ export class DataModelService {
 
   public getTransformers(params?: any) {
     return this._http
-      .get(`${API_URL('model')}/transformers`, {
+      .get(`${BASE_URL}/transformers`, {
         params: { ...params },
         observe: 'response',
       })

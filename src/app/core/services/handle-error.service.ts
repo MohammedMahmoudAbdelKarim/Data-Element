@@ -56,8 +56,6 @@ export class HandleErrorService {
     }
   }
   public handleBackendValidations(error: HttpErrorResponse) {
-    console.log(error.error);
-
     if (error.error.errors) {
       this._toaster.error(
         error.error.errors[0]['enMessage'],

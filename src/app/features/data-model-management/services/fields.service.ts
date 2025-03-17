@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_URL } from 'src/app/core/constants';
-import { FilterCriteriaModel } from 'src/app/core/models';
 import { DataModelFormDataModel } from '../models/data-model.model';
 import { map } from 'rxjs';
 import { FieldModel } from '../models/fields.model';

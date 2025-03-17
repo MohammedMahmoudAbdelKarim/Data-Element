@@ -78,15 +78,19 @@ export class HistoryLogComponent implements OnInit {
       this._subscription$.add(
         this._dataModelService.downloadModelFile(event?.element.id).subscribe({
           next: (res) => {
-            const blob = new Blob([JSON.stringify(res)], {
-              type: 'application/octet-stream',
-            });
-            const fileName = 'data-model.json';
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.download = fileName;
-            link.click();
-            link.remove();
+            const reader = new FileReader();
+            reader.onload = () => {
+              const result = reader.result as string;
+              console.log(result);
+
+              try {
+                const json = JSON.parse(result);
+                console.log(json);
+              } catch (error) {
+                console.error('Failed to parse JSON:', error);
+              }
+            };
+            reader.readAsText(res);
           },
         })
       );

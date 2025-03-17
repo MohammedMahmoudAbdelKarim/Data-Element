@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseURL: 'http://ec2-54-91-132-87.compute-1.amazonaws.com:9061/admin/v1',
+  baseURL: 'http://135.224.16.197:9063/admin/v1',
 };

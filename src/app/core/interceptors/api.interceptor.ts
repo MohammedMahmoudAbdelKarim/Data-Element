@@ -11,7 +11,10 @@ import { Observable } from 'rxjs/internal/Observable';
 export class AppInterceptor implements HttpInterceptor {
   constructor() {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
     if (token) {
       request = request.clone({
