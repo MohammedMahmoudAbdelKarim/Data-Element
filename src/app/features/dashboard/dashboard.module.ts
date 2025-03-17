@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -14,7 +13,6 @@ import { NgChartsModule } from 'ng2-charts';
     DashboardRoutingModule,
     MatIconModule,
     MatSpinnerOverlayComponent,
-    NgChartsModule,
   ],
 })
 export class DashboardModule {}
