@@ -19,8 +19,9 @@ export class AppInterceptor implements HttpInterceptor {
     if (token) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`,
-          'ngrok-skip-browser-warning': 'true',
+          // Authorization: `Bearer ${token}`,
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
         },
       });
     }
